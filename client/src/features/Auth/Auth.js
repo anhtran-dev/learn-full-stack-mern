@@ -1,6 +1,7 @@
 import React from 'react';
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
+import './Auth'
 
 const Auth = (props) => {
     const {authRoute} = props;
