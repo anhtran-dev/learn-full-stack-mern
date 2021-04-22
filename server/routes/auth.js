@@ -12,6 +12,7 @@ router.use(bodyParser.urlencoded({extended: true}));
 // @desc Register user
 // @access Public
 router.post('/register', async (req, res) => {
+
     const {email , password} = req.body;
     // validation
     if(!email || !password){
