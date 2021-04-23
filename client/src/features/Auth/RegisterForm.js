@@ -48,7 +48,7 @@ const RegisterForm = (props) => {
                 </Form.Item>
             </Form>
             <div>
-                <p>You have an account? <Link to="/login"><Button size='small' type='success' >Login</Button></Link></p>
+                <p>Already have an account? <Link to="/login"><Button size='small' type='info' className='mf-10'>Login</Button></Link></p>
             </div>
         </>
     );

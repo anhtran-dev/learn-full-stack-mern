@@ -1,17 +1,31 @@
 import React from 'react';
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
-import './Auth'
-
+import './Auth.scss'
+import {AuthContext} from "../../contexts/AuthContext";
+import {useContext} from 'react';
+import {Redirect} from 'react-router-dom';
+import { Spin } from 'antd';
 const Auth = (props) => {
     const {authRoute} = props;
-    const body = (
-        <>
-            {
-                authRoute === 'login' ? <LoginForm /> : <RegisterForm />
-            }
-        </>
-    );
+    const {authState : {authLoading , isAuthenticated }} = useContext(AuthContext);
+    let body ;
+    if(authLoading) {
+        body = (
+            <div>
+                <Spin />
+            </div>
+        )
+    }else if (isAuthenticated) return <Redirect to='/home' />
+    else{
+        body = (
+            <>
+                {
+                    authRoute === 'login' ? <LoginForm /> : <RegisterForm />
+                }
+            </>
+        )
+    }
     return (
         <div className="landing">
             <div className="dark-overlay">

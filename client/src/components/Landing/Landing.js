@@ -6,5 +6,4 @@ function Landing(props) {
         <Redirect to="/login" />
     );
 }
-
 export default Landing;

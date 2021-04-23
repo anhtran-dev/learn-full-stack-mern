@@ -7,7 +7,22 @@ require('dotenv').config();
 const bodyParser = require('body-parser');
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: true}));
+const verifyToken = require('../middleware/auth');
 
+// @router POST api/auth
+// @desc check user is logged in
+// @access Public
+router.get('/', verifyToken , async (req, res) => {
+    try{
+        const user = await User.findById(req.userId).select('-password');
+        if(!user){
+            return res.status(401).send({success : false, message : 'User not found !'})
+        }
+        return res.status(200).send({success : true, data : user})
+    } catch (e) {
+        return res.status(500).send(e);
+    }
+});
 // @router POST api/auth/register
 // @desc Register user
 // @access Public
